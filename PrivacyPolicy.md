@@ -14,7 +14,7 @@ Mobile Phone Number: Provided when you call the phone number listed on my GitHub
 
 Name and Contact Details: Optionally provided via the website contact form for job-related inquiries.
 
-
+---
 2. How I Collect Information
 
 You provide your mobile phone number through:
