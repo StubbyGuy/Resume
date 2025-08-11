@@ -35,7 +35,7 @@ No mobile information will be shared with third parties or affiliates for market
 ---
 4. Opt-In and Opt-Out
 
-Opt-In: You consent to receive SMS notifications by calling my listed phone number or submitting the website form with the consent checkbox.
+Opt-In: You consent to receive SMS notifications by calling my listed phone number on my Public Resume in this GitHub Repository.
 
 Opt-Out: Reply "STOP" to any SMS to unsubscribe. You will receive a confirmation: "You have successfully been unsubscribed. You will not receive any more messages from this number. Reply START to resubscribe."
 
