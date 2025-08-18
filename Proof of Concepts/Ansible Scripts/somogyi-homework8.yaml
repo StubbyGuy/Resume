@@ -1,0 +1,41 @@
+---
+  - name: Somogyi Playbook Clone Github Repo into new Directory
+    hosts: webservers
+    become: yes
+    vars:
+      check_directory: "/home/eric/Documents"
+      new_directory: "/home/eric/Documents/DPU_Cybersecurity"
+      git_repo_url: "https://github.com/StubbyGuy/DePaul-Cybersecurity-Automation-Test.git"
+      git_branch: "main"
+  
+    tasks:
+  
+      - name: Asserting that check_directory variable exists
+        assert:
+          that:
+            - check_directory is directory
+          fail_msg: "{{ check_directory }} is not a directory."
+          success_msg: "{{ check_directory }} is a directory."
+        register: assert_dir
+  
+      - name: Create a new directory
+        file:
+          path: "{{ new_directory }}"
+          state: directory
+        register: new_dir
+  
+      - name: Clone Git Repo into new directory
+        git:
+          repo: "{{ git_repo_url }}"
+          dest: "{{ new_directory }}"
+          version: "{{ git_branch }}"
+        register: git_new
+  
+      - name: Debug all task results
+        debug:
+          msg:
+            - "{{ assert_dir }}"
+            - "{{ new_dir }}"
+            - "{{ git_new }}"
+  
+  

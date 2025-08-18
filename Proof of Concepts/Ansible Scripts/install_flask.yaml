@@ -1,0 +1,34 @@
+---
+- name: Install Flask and Python Dependencies
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Ensure pip is installed
+      win_pip:
+        name: pip
+        state: present
+        extra_args: --upgrade
+
+    - name: Install Flask
+      win_pip:
+        name: flask
+        state: present
+
+    - name: Install other common Flask dependencies
+      win_pip:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - flask-sqlalchemy
+        - flask-migrate
+        - flask-wtf
+        - python-dotenv
+
+    - name: Verify Flask installation
+      win_shell: |
+        python -c "import flask; print(flask.__version__)"
+      register: flask_version
+
+    - name: Display Flask version
+      debug:
+        msg: "Flask version: {{ flask_version.stdout }}" 

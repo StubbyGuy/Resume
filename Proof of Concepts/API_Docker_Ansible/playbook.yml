@@ -1,0 +1,26 @@
+---
+- name: Final Playbook Part 3
+  hosts: localhost
+  connection: local
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Build image from Dockerfile
+      docker_image:
+        name: somogyi_image
+        build:
+          path: /home/eric/CSEC480Final
+          dockerfile: Dockerfile
+        source: build
+        state: present
+
+    - name: Starts Docker Container and maps port 5000
+      docker_container:
+        name: somogyi_helloworld
+        image: somogyi_image
+        state: started
+        ports:
+          - "5000:5000"
+        detach: true
+        output_logs: true
